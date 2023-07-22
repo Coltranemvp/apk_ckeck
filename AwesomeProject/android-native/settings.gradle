@@ -1,25 +1,21 @@
 pluginManagement {
     repositories {
-        mavenLocal()
-        gradlePluginPortal()
         google()
         mavenCentral()
+        gradlePluginPortal()
     }
 }
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
-        mavenLocal()
-        mavenCentral()
         google()
+        mavenCentral()
+        mavenLocal()
         maven {
             // All of React Native (JS, Obj-C sources, Android binaries) is installed from npm
             url "$rootDir/../node_modules/react-native/android"
         }
     }
 }
-
-rootProject.name = 'AwesomeProject'
-apply from: file("../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesSettingsGradle(settings)
+rootProject.name = "Native Sample"
 include ':app'
-includeBuild('../node_modules/@react-native/gradle-plugin')
