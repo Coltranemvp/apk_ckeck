@@ -116,4 +116,16 @@ dependencies {
     }
 }
 
+task buildReactAssets(type: Exec) {
+    workingDir "${rootProject.projectDir}/../"
+    commandLine 'mkdir', '-p', 'android/app/src/main/assets'
+    commandLine 'react-native', 'bundle', '--platform', 'android', '--dev', 'false', '--entry-file',
+            'index.js', '--bundle-output', 'android/app/src/main/assets/index.android.bundle',
+            '--assets-dest', 'android/app/src/main/res'
+
+    doLast {
+        println "React assets were successfully built!"
+    }
+}
+
 apply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesAppBuildGradle(project)
