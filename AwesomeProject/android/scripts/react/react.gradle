@@ -1,0 +1,34 @@
+task buildReactAssets(type: Exec) {
+    group "react"
+
+    workingDir "${rootProject.projectDir}/scripts/react"
+    commandLine './react-build.sh'
+
+    doLast {
+        println "React assets were successfully built!"
+    }
+}
+
+tasks.preBuild.dependsOn(buildReactAssets)
+
+task cleanReactAssets(type: Exec) {
+    group "react"
+
+    workingDir "${rootProject.projectDir}/scripts/react"
+    commandLine './react-clean.sh'
+
+    doLast {
+        println "React assets were successfully cleaned!"
+    }
+}
+
+tasks.clean.dependsOn(cleanReactAssets)
+
+task rebuildReactAssets {
+    group "react"
+
+    dependsOn 'clean'
+    dependsOn 'assemble'
+
+    assemble.shouldRunAfter(clean)
+}

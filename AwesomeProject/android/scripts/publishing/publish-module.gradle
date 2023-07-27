@@ -4,7 +4,7 @@ apply plugin: 'org.jetbrains.dokka'
 
 ext {
     PUBLISH_GROUP_ID = 'com.awesomeproject'
-    PUBLISH_VERSION = '0.0.4'
+    PUBLISH_VERSION = '0.0.7'
 }
 
 task projectSourcesJar(type: Jar) {
@@ -96,13 +96,4 @@ afterEvaluate {
             mavenCentral()
         }
     }
-}
-
-signing {
-    useInMemoryPgpKeys(
-            rootProject.ext["signing.keyId"],
-            rootProject.ext["signing.key"],
-            rootProject.ext["signing.password"],
-    )
-    sign publishing.publications
 }
