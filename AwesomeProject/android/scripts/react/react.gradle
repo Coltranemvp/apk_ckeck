@@ -1,4 +1,4 @@
-task buildReactAssets(type: Exec) {
+task reactBuildAssets(type: Exec) {
     group "react"
 
     workingDir "${rootProject.projectDir}/scripts/react"
@@ -9,9 +9,9 @@ task buildReactAssets(type: Exec) {
     }
 }
 
-tasks.preBuild.dependsOn(buildReactAssets)
+tasks.preBuild.dependsOn(reactBuildAssets)
 
-task cleanReactAssets(type: Exec) {
+task reactCleanAssets(type: Exec) {
     group "react"
 
     workingDir "${rootProject.projectDir}/scripts/react"
@@ -22,13 +22,39 @@ task cleanReactAssets(type: Exec) {
     }
 }
 
-tasks.clean.dependsOn(cleanReactAssets)
+tasks.clean.dependsOn(reactCleanAssets)
 
-task rebuildReactAssets {
+task reactRebuildProject {
     group "react"
 
     dependsOn 'clean'
     dependsOn 'assemble'
 
     assemble.shouldRunAfter(clean)
+}
+
+afterEvaluate {
+    task reactPublishArtifactsToMavenLocal {
+        group "react"
+
+        dependsOn 'reactRebuildProject'
+        dependsOn 'publishAllPublicationsToMavenLocalRepository'
+        publishAllPublicationsToMavenLocalRepository.shouldRunAfter(reactRebuildProject)
+
+        doLast {
+            println "React artifacts were successfully published to mavenLocal()!"
+        }
+    }
+
+    task reactPublishArtifactsToSonatype {
+        group "react"
+
+        dependsOn 'reactRebuildProject'
+        dependsOn 'publishAllPublicationsToSonatypeRepository'
+        publishAllPublicationsToSonatypeRepository.shouldRunAfter(reactRebuildProject)
+
+        doLast {
+            println "React artifacts were successfully published to sonatype!"
+        }
+    }
 }

@@ -9,7 +9,11 @@ buildscript {
 
         // We use NDK 23 which has both M1 support and is the side-by-side NDK version from AGP.
         ndkVersion = "23.1.7779620"
+
+        PUBLISH_GROUP_ID = 'com.awesomeproject'
+        PUBLISH_VERSION = '0.0.11'
     }
+
     repositories {
         google()
         mavenCentral()
@@ -30,4 +34,4 @@ plugins {
     id 'com.android.library' version '7.4.2' apply false
 }
 
-apply from: "${rootDir}/scripts/publish-root.gradle"
+apply from: "${rootDir}/scripts/publishing/publish-root.gradle"

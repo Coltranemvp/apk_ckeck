@@ -1,7 +1,6 @@
 plugins {
     id 'com.android.library'
     id 'com.facebook.react'
-    id 'maven-publish'
     id 'org.jetbrains.kotlin.android'
 }
 
@@ -9,7 +8,7 @@ ext {
     PUBLISH_ARTIFACT_ID = 'wallet'
 }
 
-apply from: "${rootProject.projectDir}/scripts/publish-module.gradle"
+apply from: "${rootProject.projectDir}/scripts/publishing/publish-module.gradle"
 
 /**
  * This is the configuration block to customize your React Native Android app.
@@ -99,10 +98,7 @@ android {
     }
 
     sourceSets {
-        main {
-            res.srcDirs = ['/res', '/rn/res']
-            assets.srcDirs = ['/assets', '/rn/assets']
-        }
+        main.res.srcDirs += 'src/main/res-rn'
     }
 }
 
@@ -123,13 +119,5 @@ dependencies {
     }
 }
 
-task buildReactAssets(type: Exec) {
-    workingDir "${rootProject.projectDir}/scripts/"
-    commandLine './build-react.sh'
-
-    doLast {
-        println "React assets were successfully built!"
-    }
-}
-
 apply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesAppBuildGradle(project)
+apply from: "${rootProject.projectDir}/scripts/react/react.gradle"
