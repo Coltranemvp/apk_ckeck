@@ -60,8 +60,7 @@ buck-out/
 *.android.bundle
 
 # artifact resources
-./android/app/src/main/res-rn
+res-rn/
 
 # Sign properties
-./android/sign.properties
 sign.properties
