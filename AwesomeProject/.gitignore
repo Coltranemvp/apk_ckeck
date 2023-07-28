@@ -21,12 +21,11 @@ DerivedData/
 *.ipa
 *.xcuserstate
 project.xcworkspace
-*.lock
 .Trashes
 *.swp
 *~.nib
 Pods/
-AwesomeProject.xcworkspace/
+*.xcworkspace/
 
 # Android/IntelliJ
 #
