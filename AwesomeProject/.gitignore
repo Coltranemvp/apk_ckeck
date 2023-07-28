@@ -13,14 +13,20 @@ build/
 !default.mode2v3
 *.perspectivev3
 !default.perspectivev3
-xcuserdata
+xcuserdata/
 *.xccheckout
 *.moved-aside
-DerivedData
+DerivedData/
 *.hmap
 *.ipa
 *.xcuserstate
 project.xcworkspace
+*.lock
+.Trashes
+*.swp
+*~.nib
+Pods/
+AwesomeProject.xcworkspace/
 
 # Android/IntelliJ
 #
